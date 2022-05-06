@@ -7,6 +7,7 @@ let User = cc.Class({
         userPassword: ""
     }
 });
+
 cc.Class({
     extends: cc.Component,
 
@@ -16,9 +17,7 @@ cc.Class({
             type: User
         },
         userPrefab: cc.Prefab,
-        backButton: cc.Button,
-        welcome: require("welcome")
-
+        welcome: require("welcome"),
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -46,6 +45,20 @@ cc.Class({
     onClickBackBtn() {
         this.welcome.hideListViewUser();
         this.welcome.showRegisterForm();
+
+        let idUsersSelect = require("idUsersSelect");
+        idUsersSelect.splice(0, idUsersSelect.length);
+    },
+    onClickDeleteBtn() {
+        let idUsersSelect = require("idUsersSelect");
+        if (idUsersSelect.length == 0) return;
+        for (let i = 0; i < idUsersSelect.length; i++) {
+            let index = this.users.findIndex(user => user.id == idUsersSelect[i])
+            this.node.removeChild(this.node.children[index]);
+            this.users.splice(index, 1);
+        }
+        //* Reset idUsersSelect = []
+        idUsersSelect.splice(0, idUsersSelect.length);
     },
 
     start() {

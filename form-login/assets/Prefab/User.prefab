@@ -28,11 +28,11 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 14
+        "__id__": 15
       }
     ],
     "_prefab": {
-      "__id__": 15
+      "__id__": 16
     },
     "_opacity": 255,
     "_color": {
@@ -200,7 +200,7 @@
       }
     ],
     "_prefab": {
-      "__id__": 13
+      "__id__": 14
     },
     "_opacity": 255,
     "_color": {
@@ -521,8 +521,22 @@
     "checkMark": {
       "__id__": 10
     },
-    "checkEvents": [],
+    "checkEvents": [
+      {
+        "__id__": 13
+      }
+    ],
     "_id": ""
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 1
+    },
+    "component": "",
+    "_componentId": "dcd73uu9oNKtI2/c3jiRwEK",
+    "handler": "onSelectUser",
+    "customEventData": ""
   },
   {
     "__type__": "cc.PrefabInfo",
@@ -544,11 +558,9 @@
     },
     "_enabled": true,
     "id": 0,
+    "isSelected": false,
     "userName": {
       "__id__": 3
-    },
-    "userSelect": {
-      "__id__": 12
     },
     "_id": ""
   },
