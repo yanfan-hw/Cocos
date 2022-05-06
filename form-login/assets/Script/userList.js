@@ -14,7 +14,7 @@ cc.Class({
     properties: {
         users: {
             default: [],
-            type: User
+            type: User,
         },
         userPrefab: cc.Prefab,
         welcome: require("welcome"),
@@ -37,10 +37,22 @@ cc.Class({
     addChildUser(data) {
         let user = cc.instantiate(this.userPrefab);
         this.node.addChild(user);
+        this.users.push(data);
         user.getComponent("userTemplate").init({
             id: data.id,
             userName: data.userName
         });
+    },
+    handleSlider(Slider) {
+        let value = Slider.progress;
+        if(value == 0) return
+
+        for(let i = 0; i < this.users.length; i++) {
+            let labelUserName = this.node.children[i].children[0].getComponent(cc.Label);
+            labelUserName.fontSize = (8 * value + 10);
+            // labelUserName.onRestore();
+            // size = 8 / value + 10 (10->18)
+        }
     },
     onClickBackBtn() {
         this.welcome.hideListViewUser();
@@ -52,6 +64,8 @@ cc.Class({
     onClickDeleteBtn() {
         let idUsersSelect = require("idUsersSelect");
         if (idUsersSelect.length == 0) return;
+        cc.log(idUsersSelect)
+
         for (let i = 0; i < idUsersSelect.length; i++) {
             let index = this.users.findIndex(user => user.id == idUsersSelect[i])
             this.node.removeChild(this.node.children[index]);

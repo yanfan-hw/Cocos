@@ -15,8 +15,11 @@ cc.Class({
     init(user) {
         this.id = user.id;
         this.userName.string = user.userName;
-        this.isSelected = user.isSelected;
-
+        // this.userName.fontSize = 10;
+        // cc.log(this.userName.fontSize);
+    },
+    resizeFontSizeLabel(size) {
+        this.userName.fontSize = size;
     },
     onSelectUser(toggle) {
         if (toggle.isChecked) {

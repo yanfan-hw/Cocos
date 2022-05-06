@@ -26,7 +26,7 @@ cc.Class({
         if (!user.userName || !user.userName || !user.userPassword) return
 
         // cc.log(user);
-        this.userList.users.push(user);
+        // this.userList.users.push(user);
         this.userList.addChildUser(user);
 
         this.resetInput();
