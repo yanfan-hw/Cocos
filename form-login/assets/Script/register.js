@@ -6,7 +6,8 @@ cc.Class({
         userEmail: cc.EditBox,
         userPassword: cc.EditBox,
         registerButton: cc.Button,
-        welcome: require("welcome")
+        welcome: require("welcome"),
+        userList: require("userList")
     },
 
     // use this for initialization
@@ -17,15 +18,18 @@ cc.Class({
     },
     onClickRegister() {
         let user = {
-            name: this.userName.string,
-            email: this.userEmail.string,
-            password: this.userPassword.string
+            id: this.userList.users.length,
+            userName: this.userName.string,
+            userEmail: this.userEmail.string,
+            userPassword: this.userPassword.string
         }
-        if (!user.name || !user.email || !user.password) return
+        if (!user.userName || !user.userName || !user.userPassword) return
+
         cc.log(user);
+        this.userList.users.push(user);
+        this.userList.addChildUser(user);
 
         this.resetInput();
-
         this.welcome.hideRegisterForm();
         this.welcome.showLoadingBar();
     },

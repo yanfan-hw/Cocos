@@ -4,7 +4,7 @@ cc.Class({
     properties: {
         registerForm: cc.Node,
         loadingBar: cc.Node,
-        // listViewUser: cc.Node
+        listViewUser: cc.Node
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -12,6 +12,7 @@ cc.Class({
     onLoad () {
         this.showRegisterForm();
         this.hideLoadingBar();
+        this.hideListViewUser();
     },
 
     showRegisterForm() {
@@ -26,15 +27,15 @@ cc.Class({
     hideLoadingBar() {
         this.loadingBar.active = false;
     },
-    // showRegisterForm() {
-
-    // },
-    // hideRegisterForm() {
-
-    // },
-    start () {
-
+    showListViewUser() {
+        this.listViewUser.active = true;
     },
+    hideListViewUser() {
+        this.listViewUser.active = false;
+    },
+
+    // start () {
+    // },
 
     // update (dt) {},
 });
