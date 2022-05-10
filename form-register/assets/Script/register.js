@@ -8,7 +8,6 @@ cc.Class({
         userEmail: cc.EditBox,
         userPassword: cc.EditBox,
         registerButton: cc.Button,
-        welcome: require("welcome"),
         userList: require("userList")
     },
 
@@ -26,16 +25,11 @@ cc.Class({
         }
         if (!user.userName || !user.userName || !user.userPassword) return
 
-        // cc.log(user);
-        // this.userList.users.push(user);
         this.onHideRegisterForm();
         Emitter.instance.emit('showLoadingBar');
         Emitter.instance.emit('addUser', user);
-        // this.userList.addChildUser(user);
 
         this.resetInput();
-        // this.welcome.hideRegisterForm();
-        // this.welcome.showLoadingBar();
     },
     resetInput() {
         this.userName.string = "";
@@ -48,7 +42,6 @@ cc.Class({
     onHideRegisterForm() {
         this.node.active = false;
     }
-
     // called every frame
     // update (dt) {
     // },

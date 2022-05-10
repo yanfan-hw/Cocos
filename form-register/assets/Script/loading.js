@@ -28,7 +28,6 @@ cc.Class({
     onHideLoadingBar() {
         this.node.active = false;
     },
-
     // start() {},
     // update(dt) {},
 });

@@ -1,5 +1,7 @@
 const Emitter = require("mEmitter");
 
+let idUserSelect = [];
+
 let User = cc.Class({
     name: 'User',
     properties: {
@@ -18,69 +20,58 @@ cc.Class({
             default: [],
             type: User,
         },
-        userPrefab: cc.Prefab,
-        welcome: require("welcome"),
+        userPrefab: cc.Prefab
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        // Emitter.instance = new Emitter();
         Emitter.instance.registerEvent('addUser', this.addChildUser.bind(this));
-        // cc.log(this.node)
-        // for (let i = 0; i < this.users.length; i++) {
-        //     let user = cc.instantiate(this.userPrefab);
-        //     let data = this.users[i];
-        //     this.node.addChild(user);
-        //     user.getComponent("userTemplate").init({
-        //         id: data.id,
-        //         userName: data.userName
-        //     });
-        // }
+        Emitter.instance.registerEvent('onSelectUser', this.onSelectUser.bind(this));
     },
     addChildUser(data) {
         let user = cc.instantiate(this.userPrefab);
         this.node.addChild(user);
+        // Emitter.instance.emit('initUser', data);
         this.users.push(data);
         user.getComponent("userTemplate").init({
             id: data.id,
             userName: data.userName
         });
     },
+    onSelectUser(data) {
+        if (data.isChecked) {
+            idUserSelect.push(data.id);
+        } else {
+            let index = idUserSelect.indexOf(data.id)
+            idUserSelect.splice(index, 1);
+        }
+    },
     handleSlider(Slider) {
-        let value = Slider.progress;
-        if(value == 0) return
+        if (Slider.progress == 0) return
+        fontSize = (8 * Slider.progress + 10)
 
-        for(let i = 0; i < this.users.length; i++) {
-            let labelUserName = this.node.children[i].children[0].getComponent(cc.Label);
-            labelUserName.fontSize = (8 * value + 10);
-            // labelUserName.onRestore();
-            // size = 8 / value + 10 (10->18)
+        for (let i = 0; i < this.users.length; i++) {
+            Emitter.instance.emit('resizeFontSizeLabel', value);
         }
     },
     onClickBackBtn() {
-        this.welcome.hideListViewUser();
-        this.welcome.showRegisterForm();
-
-        // let idUsersSelect = require("idUsersSelect");
-        // idUsersSelect.splice(0, idUsersSelect.length);
+        Emitter.instance.emit('hideListViewUser');
+        Emitter.instance.emit('showRegisterForm');
     },
     onClickDeleteBtn() {
-        let idUsersSelect = require("idUsersSelect");
-        if (idUsersSelect.length == 0) return;
-        cc.log(idUsersSelect)
+        if (idUserSelect.length == 0) return;
 
-        for (let i = 0; i < idUsersSelect.length; i++) {
-            let index = this.users.findIndex(user => user.id == idUsersSelect[i])
+        for (let i = 0; i < idUserSelect.length; i++) {
+            let index = this.users.findIndex(user => user.id == idUserSelect[i])
             this.node.removeChild(this.node.children[index]);
             this.users.splice(index, 1);
         }
         //* Reset idUsersSelect = []
-        idUsersSelect.splice(0, idUsersSelect.length);
+        idUserSelect.splice(0, idUserSelect.length);
+        cc.log(idUserSelect)
     },
 
-    start() {
-    },
-
+    // start() {},
     // update (dt) {},
 });
