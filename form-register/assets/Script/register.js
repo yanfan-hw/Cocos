@@ -1,3 +1,5 @@
+const Emitter = require("mEmitter");
+
 cc.Class({
     extends: cc.Component,
 
@@ -27,11 +29,14 @@ cc.Class({
 
         // cc.log(user);
         // this.userList.users.push(user);
+        Emitter.instance.emit('hideRegisterForm');
+        Emitter.instance.emit('showLoadingBar');
+        Emitter.instance.emit('addUser', user);
         this.userList.addChildUser(user);
 
         this.resetInput();
-        this.welcome.hideRegisterForm();
-        this.welcome.showLoadingBar();
+        // this.welcome.hideRegisterForm();
+        // this.welcome.showLoadingBar();
     },
     resetInput() {
         this.userName.string = "";

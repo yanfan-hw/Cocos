@@ -1,3 +1,5 @@
+const Emitter = require("mEmitter");
+
 cc.Class({
     extends: cc.Component,
 
@@ -13,6 +15,16 @@ cc.Class({
         this.showRegisterForm();
         this.hideLoadingBar();
         this.hideListViewUser();
+
+        Emitter.instance = new Emitter();
+        Emitter.instance.registerEvent('showRegisterForm', this.showRegisterForm.bind(this));
+        Emitter.instance.registerEvent('hideRegisterForm', this.hideRegisterForm.bind(this));
+
+        Emitter.instance.registerEvent('showLoadingBar', this.showLoadingBar.bind(this));
+        Emitter.instance.registerEvent('hideLoadingBar', this.hideLoadingBar.bind(this));
+
+        Emitter.instance.registerEvent('showListViewUser', this.showListViewUser.bind(this));
+        Emitter.instance.registerEvent('hideListViewUser', this.hideListViewUser.bind(this));
     },
 
     showRegisterForm() {
