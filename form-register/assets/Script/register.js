@@ -12,7 +12,6 @@ cc.Class({
         userList: require("userList")
     },
 
-    // use this for initialization
     onLoad() {
         if (!this.userName.string && !this.userEmail.string && !this.userPassword.string) {
             // this.registerButton.interactable = false;
@@ -29,10 +28,10 @@ cc.Class({
 
         // cc.log(user);
         // this.userList.users.push(user);
-        Emitter.instance.emit('hideRegisterForm');
+        this.onHideRegisterForm();
         Emitter.instance.emit('showLoadingBar');
         Emitter.instance.emit('addUser', user);
-        this.userList.addChildUser(user);
+        // this.userList.addChildUser(user);
 
         this.resetInput();
         // this.welcome.hideRegisterForm();
@@ -42,6 +41,12 @@ cc.Class({
         this.userName.string = "";
         this.userEmail.string = "";
         this.userPassword.string = "";
+    },
+    onShowRegisterForm() {
+        this.node.active = true;
+    },
+    onHideRegisterForm() {
+        this.node.active = false;
     }
 
     // called every frame

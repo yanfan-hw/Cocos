@@ -11,11 +11,7 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-        this.showRegisterForm();
-        this.hideLoadingBar();
-        this.hideListViewUser();
-
+    onLoad() {
         Emitter.instance = new Emitter();
         Emitter.instance.registerEvent('showRegisterForm', this.showRegisterForm.bind(this));
         Emitter.instance.registerEvent('hideRegisterForm', this.hideRegisterForm.bind(this));
@@ -46,8 +42,11 @@ cc.Class({
         this.listViewUser.active = false;
     },
 
-    // start () {
-    // },
+    start() {
+        this.showRegisterForm();
+        this.hideLoadingBar();
+        this.hideListViewUser();
+    },
 
     // update (dt) {},
 });

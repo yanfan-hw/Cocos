@@ -1,3 +1,5 @@
+const Emitter = require("mEmitter");
+
 let User = cc.Class({
     name: 'User',
     properties: {
@@ -23,6 +25,8 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        // Emitter.instance = new Emitter();
+        Emitter.instance.registerEvent('addUser', this.addChildUser.bind(this));
         // cc.log(this.node)
         // for (let i = 0; i < this.users.length; i++) {
         //     let user = cc.instantiate(this.userPrefab);

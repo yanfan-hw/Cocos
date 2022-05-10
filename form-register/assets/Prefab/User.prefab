@@ -45,7 +45,7 @@
     "_contentSize": {
       "__type__": "cc.Size",
       "width": 300,
-      "height": 50
+      "height": 60
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -558,7 +558,6 @@
     },
     "_enabled": true,
     "id": 0,
-    "isSelected": false,
     "userName": {
       "__id__": 3
     },
