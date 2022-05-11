@@ -9,6 +9,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
+        Emitter.instance = new Emitter();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     },
@@ -35,13 +36,13 @@ cc.Class({
                 Emitter.instance.emit('leftUp');
                 break;
             case cc.macro.KEY.right:
-                Emitter.instance.emit('rightDown');
+                Emitter.instance.emit('rightUp');
                 break;
             case cc.macro.KEY.up:
-                Emitter.instance.emit('upKeyDown');
+                Emitter.instance.emit('upKeyUp');
                 break;
             case cc.macro.KEY.down:
-                Emitter.instance.emit('downKeyDown');
+                Emitter.instance.emit('downKeyUp');
                 break;
         }
     },

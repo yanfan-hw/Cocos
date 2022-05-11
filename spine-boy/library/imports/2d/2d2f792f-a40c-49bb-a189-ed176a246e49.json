@@ -160,7 +160,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 229.6559508987518
+      "z": 351.48870861358665
     },
     "_scale": {
       "__type__": "cc.Vec3",
@@ -374,14 +374,14 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -300,
+      "x": -420,
       "y": -210,
       "z": 0
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.3,
-      "y": 0.3,
+      "x": 0.1,
+      "y": 0.1,
       "z": 1
     },
     "_eulerAngles": {
@@ -411,7 +411,7 @@
     ],
     "paused": false,
     "defaultSkin": "",
-    "defaultAnimation": "portal",
+    "defaultAnimation": "",
     "_preCacheMode": 0,
     "_cacheMode": 0,
     "loop": false,
@@ -422,7 +422,7 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "portal",
+    "_animationName": "jump",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 1,
@@ -445,6 +445,9 @@
       "__id__": 8
     },
     "_enabled": true,
+    "spineBoy": {
+      "__id__": 9
+    },
     "_id": "37AV9bhxdPm6szsvYtYVFd"
   },
   {

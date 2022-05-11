@@ -17,6 +17,7 @@ cc.Class({
 
     // use this for initialization
     onLoad: function onLoad() {
+        _mEmitter2.default.instance = new _mEmitter2.default();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
     },
@@ -43,13 +44,13 @@ cc.Class({
                 _mEmitter2.default.instance.emit('leftUp');
                 break;
             case cc.macro.KEY.right:
-                _mEmitter2.default.instance.emit('rightDown');
+                _mEmitter2.default.instance.emit('rightUp');
                 break;
             case cc.macro.KEY.up:
-                _mEmitter2.default.instance.emit('upKeyDown');
+                _mEmitter2.default.instance.emit('upKeyUp');
                 break;
             case cc.macro.KEY.down:
-                _mEmitter2.default.instance.emit('downKeyDown');
+                _mEmitter2.default.instance.emit('downKeyUp');
                 break;
         }
     },
