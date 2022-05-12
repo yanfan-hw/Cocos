@@ -1,7 +1,5 @@
 import Emitter from 'mEmitter';
 
-let direction = 0, isPressKey = true;
-
 cc.Class({
     extends: cc.Component,
 
@@ -15,8 +13,11 @@ cc.Class({
         this.initCharacter();
         this.eventHandler();
 
-        this.actionRight = cc.moveBy(20, 480, 0);
-        this.actionLeft = cc.moveBy(20, -480, 0);
+        this.check = true;
+        this.checkJump = true;
+        this.actionRight = cc.moveBy(10, 3000, 0);
+        this.actionLeft = cc.moveBy(10, -3000, 0);
+        this.actionUp = cc.sequence(cc.moveBy(0.5, 0, 100), cc.moveBy(0.5, 0, -100));
     },
 
     start() {
@@ -26,7 +27,7 @@ cc.Class({
         this.node.active = true;
         this.spineBoy.addAnimation(0, 'portal', false);
         this.spineBoy.setCompleteListener(() => {
-            this.spineBoy.setAnimation(0, 'idle', true);
+            this.spineBoy.addAnimation(1, 'idle', true);
         })
     },
     eventHandler() {
@@ -41,53 +42,54 @@ cc.Class({
         Emitter.instance.registerEvent('upKeyUp', this.upKeyUp.bind(this));
         Emitter.instance.registerEvent('downKeyUp', this.downKeyUp.bind(this));
     },
+
     leftDown() {
-        direction = -1;
-        this.node.scaleX = this.node.scaleX * direction;
-        if (isPressKey) {
-            isPressKey = false;
+        if (this.check) {
+            this.check = false;
+            this.node.scaleX = -0.1;
             this.spineBoy.setAnimation(0, 'run', true);
             this.node.runAction(this.actionLeft);
         }
-        // cc.log(this.node.x);
     },
     rightDown() {
-        direction = 1;
-        this.node.scaleX = this.node.scaleX * direction;
-        if (isPressKey) {
-            isPressKey = false;
+        if (this.check) {
+            this.check = false;
+            this.node.scaleX = 0.1;
+            // this.spineBoy.clearTracks();
             this.spineBoy.setAnimation(0, 'run', true);
-            this.node.runAction(this.actionLeft);
+            this.node.runAction(this.actionRight);
         }
-        // cc.log(this.node.x);
     },
     upKeyDown() {
-        console.log('UpKey down');
+        this.spineBoy.setAnimation(1, 'jump', false);
     },
     downKeyDown() {
         console.log('DownKey down');
     },
 
     leftUp() {
-        if (this.node.x == - 480) return
-        isPressKey = true;
+        this.check = true;
         this.node.stopAction(this.actionLeft);
-        // this.node.x -= 0.5;
-        // console.log('Left Up');
+        this.spineBoy.setToSetupPose(() => {
+            this.spineBoy.setAnimation(0, 'idle', true);
+        });
     },
     rightUp() {
-        if (this.node.x == 480) return
-        isPressKey = true;
+        this.check = true;
         this.node.stopAction(this.actionRight);
-        // this.node.stopAction(this.moveSpineBoy());
-        // this.node.x += 0.5;
-        // console.log('Right Up');
+        this.spineBoy.setToSetupPose(() => {
+            this.spineBoy.setAnimation(0, 'idle', true);
+        });
     },
     upKeyUp() {
-        console.log('UpKey up');
+        this.spineBoy.setToSetupPose(() => {
+            this.spineBoy.clearTracks();
+            this.spineBoy.setAnimation(0, 'idle', true);
+        });
     },
     downKeyUp() {
         console.log('DownKey up');
-    }
-    // update (dt) {},
+    },
+
+    // update(dt) {},
 });

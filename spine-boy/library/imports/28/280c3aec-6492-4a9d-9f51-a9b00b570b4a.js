@@ -17,6 +17,10 @@ cc.Class({
 
     // use this for initialization
     onLoad: function onLoad() {
+        var physics_manager = cc.director.getPhysicsManager();
+        physics_manager.enabled = true;
+        physics_manager.gravity = cc.v2(0, -2000);
+
         _mEmitter2.default.instance = new _mEmitter2.default();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -30,7 +34,16 @@ cc.Class({
             case cc.macro.KEY.right:
                 _mEmitter2.default.instance.emit('rightDown');
                 break;
+            case cc.macro.KEY.a:
+                _mEmitter2.default.instance.emit('leftDown');
+                break;
+            case cc.macro.KEY.d:
+                _mEmitter2.default.instance.emit('rightDown');
+                break;
             case cc.macro.KEY.up:
+                _mEmitter2.default.instance.emit('upKeyDown');
+                break;
+            case cc.macro.KEY.w:
                 _mEmitter2.default.instance.emit('upKeyDown');
                 break;
             case cc.macro.KEY.down:
@@ -46,7 +59,16 @@ cc.Class({
             case cc.macro.KEY.right:
                 _mEmitter2.default.instance.emit('rightUp');
                 break;
+            case cc.macro.KEY.a:
+                _mEmitter2.default.instance.emit('leftUp');
+                break;
+            case cc.macro.KEY.d:
+                _mEmitter2.default.instance.emit('rightUp');
+                break;
             case cc.macro.KEY.up:
+                _mEmitter2.default.instance.emit('upKeyUp');
+                break;
+            case cc.macro.KEY.w:
                 _mEmitter2.default.instance.emit('upKeyUp');
                 break;
             case cc.macro.KEY.down:

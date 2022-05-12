@@ -1,7 +1,7 @@
 [
   {
     "__type__": "cc.SceneAsset",
-    "_name": "helloworld",
+    "_name": "main",
     "_objFlags": 0,
     "_native": "",
     "scene": {
@@ -160,7 +160,7 @@
       "__type__": "cc.Vec3",
       "x": 0,
       "y": 0,
-      "z": 351.48870861358665
+      "z": 351.60631393648214
     },
     "_scale": {
       "__type__": "cc.Vec3",

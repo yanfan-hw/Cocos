@@ -1,6 +1,6 @@
-(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/Script/Player.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, 'f03bb8ypn5CQ6Bci8vJol98', 'Player', __filename);
-// Script/Player.js
+(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/Script/SpineBoy.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
+cc._RF.push(module, 'f03bb8ypn5CQ6Bci8vJol98', 'SpineBoy', __filename);
+// Script/SpineBoy.js
 
 'use strict';
 
@@ -9,9 +9,6 @@ var _mEmitter = require('mEmitter');
 var _mEmitter2 = _interopRequireDefault(_mEmitter);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var direction = 0,
-    isPressKey = true;
 
 cc.Class({
     extends: cc.Component,
@@ -26,8 +23,11 @@ cc.Class({
         this.initCharacter();
         this.eventHandler();
 
-        this.actionRight = cc.moveBy(20, 480, 0);
-        this.actionLeft = cc.moveBy(20, -480, 0);
+        this.check = true;
+        this.checkJump = true;
+        this.actionRight = cc.moveBy(10, 3000, 0);
+        this.actionLeft = cc.moveBy(10, -3000, 0);
+        this.actionUp = cc.sequence(cc.moveBy(0.5, 0, 100), cc.moveBy(0.5, 0, -100));
     },
     start: function start() {},
     initCharacter: function initCharacter() {
@@ -36,7 +36,7 @@ cc.Class({
         this.node.active = true;
         this.spineBoy.addAnimation(0, 'portal', false);
         this.spineBoy.setCompleteListener(function () {
-            _this.spineBoy.setAnimation(0, 'idle', true);
+            _this.spineBoy.addAnimation(1, 'idle', true);
         });
     },
     eventHandler: function eventHandler() {
@@ -52,55 +52,61 @@ cc.Class({
         _mEmitter2.default.instance.registerEvent('downKeyUp', this.downKeyUp.bind(this));
     },
     leftDown: function leftDown() {
-        direction = -1;
-        this.node.scaleX = this.node.scaleX * direction;
-        if (isPressKey) {
-            isPressKey = false;
+        if (this.check) {
+            this.check = false;
+            this.node.scaleX = -0.1;
             this.spineBoy.setAnimation(0, 'run', true);
             this.node.runAction(this.actionLeft);
         }
-        // cc.log(this.node.x);
     },
     rightDown: function rightDown() {
-        direction = 1;
-        this.node.scaleX = this.node.scaleX * direction;
-        if (isPressKey) {
-            isPressKey = false;
+        if (this.check) {
+            this.check = false;
+            this.node.scaleX = 0.1;
+            // this.spineBoy.clearTracks();
             this.spineBoy.setAnimation(0, 'run', true);
-            this.node.runAction(this.actionLeft);
+            this.node.runAction(this.actionRight);
         }
-        // cc.log(this.node.x);
     },
     upKeyDown: function upKeyDown() {
-        console.log('UpKey down');
+        this.spineBoy.setAnimation(1, 'jump', false);
     },
     downKeyDown: function downKeyDown() {
         console.log('DownKey down');
     },
     leftUp: function leftUp() {
-        if (this.node.x == -480) return;
-        isPressKey = true;
+        var _this2 = this;
+
+        this.check = true;
         this.node.stopAction(this.actionLeft);
-        // this.node.x -= 0.5;
-        // console.log('Left Up');
+        this.spineBoy.setToSetupPose(function () {
+            _this2.spineBoy.setAnimation(0, 'idle', true);
+        });
     },
     rightUp: function rightUp() {
-        if (this.node.x == 480) return;
-        isPressKey = true;
+        var _this3 = this;
+
+        this.check = true;
         this.node.stopAction(this.actionRight);
-        // this.node.stopAction(this.moveSpineBoy());
-        // this.node.x += 0.5;
-        // console.log('Right Up');
+        this.spineBoy.setToSetupPose(function () {
+            _this3.spineBoy.setAnimation(0, 'idle', true);
+        });
     },
     upKeyUp: function upKeyUp() {
-        console.log('UpKey up');
+        var _this4 = this;
+
+        this.spineBoy.setToSetupPose(function () {
+            _this4.spineBoy.clearTracks();
+            _this4.spineBoy.setAnimation(0, 'idle', true);
+        });
     },
     downKeyUp: function downKeyUp() {
         console.log('DownKey up');
     }
-    // update (dt) {},
+}
 
-});
+// update(dt) {},
+);
 
 cc._RF.pop();
         }
@@ -113,5 +119,5 @@ cc._RF.pop();
             });
         }
         })();
-        //# sourceMappingURL=Player.js.map
+        //# sourceMappingURL=SpineBoy.js.map
         
