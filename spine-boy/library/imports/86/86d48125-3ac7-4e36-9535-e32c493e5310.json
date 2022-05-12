@@ -1,0 +1,28 @@
+{
+  "__type__": "cc.SpriteFrame",
+  "content": {
+    "name": "spineboy-pro_3",
+    "texture": "b708760e-fcb1-448c-a629-32f7599f7ce5",
+    "atlas": "",
+    "rect": [
+      2,
+      2,
+      928,
+      897
+    ],
+    "offset": [
+      0,
+      0
+    ],
+    "originalSize": [
+      932,
+      901
+    ],
+    "capInsets": [
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

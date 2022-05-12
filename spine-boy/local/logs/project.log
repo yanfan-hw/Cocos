@@ -1,0 +1,68 @@
+2022-05-12T15:14:05.475Z - normal: Load ~/.CocosCreator/settings.json
+2022-05-12T15:14:06.682Z - normal: Initializing Asset Database
+2022-05-12T15:14:06.697Z - normal: checking language setting...
+2022-05-12T15:14:06.697Z - normal: Language: en
+2022-05-12T15:14:07.724Z - success: preview server running at http://localhost:7456
+2022-05-12T15:14:07.735Z - success: protocol editor-framework registered
+2022-05-12T15:14:07.735Z - success: protocol app registered
+2022-05-12T15:14:07.735Z - success: protocol theme registered
+2022-05-12T15:14:07.735Z - success: protocol packages registered
+2022-05-12T15:14:07.735Z - success: protocol uuid registerred
+2022-05-12T15:14:07.735Z - success: protocol db registerred
+2022-05-12T15:14:07.735Z - success: protocol thumbnail registerred
+2022-05-12T15:14:07.735Z - success: protocol unpack registerred
+2022-05-12T15:14:07.735Z - success: protocol disable-commonjs registerred
+2022-05-12T15:14:09.833Z - normal: connected!
+2022-05-12T15:14:09.833Z - normal: Check project D:\cocos-creator\Cocos\spine-boy
+2022-05-12T15:14:09.833Z - normal: Initializing project D:\cocos-creator\Cocos\spine-boy
+2022-05-12T15:14:10.412Z - normal: Initializing Cocos2d
+2022-05-12T15:14:11.649Z - normal: Initializing engine extends
+2022-05-12T15:14:11.693Z - success: alipay-adapter loaded
+2022-05-12T15:14:11.693Z - success: asset-db-debugger loaded
+2022-05-12T15:14:11.693Z - success: baidu-adapter loaded
+2022-05-12T15:14:11.693Z - success: color-picker loaded
+2022-05-12T15:14:11.906Z - success: fb-audience-network loaded
+2022-05-12T15:14:12.029Z - success: fb-live-stream loaded
+2022-05-12T15:14:12.038Z - success: google-play-instant loaded
+2022-05-12T15:14:12.038Z - success: huawei-runtime loaded
+2022-05-12T15:14:12.354Z - success: cpk-publish loaded
+2022-05-12T15:14:12.354Z - success: jsb-adapter loaded
+2022-05-12T15:14:12.370Z - success: oppo-runtime loaded
+2022-05-12T15:14:12.370Z - success: package-manager loaded
+2022-05-12T15:14:12.526Z - success: qqplay-adapter loaded
+2022-05-12T15:14:12.542Z - success: runtime-dev-tools loaded
+2022-05-12T15:14:12.542Z - success: sdkbox loaded
+2022-05-12T15:14:12.542Z - success: tester loaded
+2022-05-12T15:14:12.542Z - success: ui-kit-preview-extra loaded
+2022-05-12T15:14:12.542Z - success: ui-kit-preview loaded
+2022-05-12T15:14:12.557Z - success: ui-kit loaded
+2022-05-12T15:14:12.557Z - success: vivo-runtime loaded
+2022-05-12T15:14:12.557Z - success: weapp-adapter loaded
+2022-05-12T15:14:12.557Z - success: xiaomi-adapter loaded
+2022-05-12T15:14:12.573Z - success: alipay-minigame loaded
+2022-05-12T15:14:12.635Z - success: assets loaded
+2022-05-12T15:14:12.635Z - success: builder loaded
+2022-05-12T15:14:13.002Z - success: cocos-services loaded
+2022-05-12T15:14:13.018Z - success: console loaded
+2022-05-12T15:14:13.065Z - success: fb-instant-games loaded
+2022-05-12T15:14:13.065Z - success: game-window loaded
+2022-05-12T15:14:13.065Z - success: google-instant-games loaded
+2022-05-12T15:14:13.080Z - success: hierarchy loaded
+2022-05-12T15:14:13.080Z - success: inspector loaded
+2022-05-12T15:14:13.080Z - success: keystore loaded
+2022-05-12T15:14:13.080Z - success: node-library loaded
+2022-05-12T15:14:13.080Z - success: package-asset loaded
+2022-05-12T15:14:13.096Z - success: preferences loaded
+2022-05-12T15:14:13.096Z - success: project-exporter loaded
+2022-05-12T15:14:13.096Z - success: project-importer loaded
+2022-05-12T15:14:13.096Z - success: project-settings loaded
+2022-05-12T15:14:13.096Z - success: scene loaded
+2022-05-12T15:14:13.112Z - success: simulator-debugger loaded
+2022-05-12T15:14:13.112Z - success: sprite-editor loaded
+2022-05-12T15:14:13.112Z - success: store loaded
+2022-05-12T15:14:13.112Z - success: timeline loaded
+2022-05-12T15:14:13.127Z - success: xiaomi-runtime loaded
+2022-05-12T15:14:16.984Z - info: Cocos Services load base data!
+2022-05-12T15:14:25.186Z - normal: Loading packages
+2022-05-12T15:14:25.201Z - normal: Watching packages
+2022-05-12T15:14:25.946Z - normal: Run Application
