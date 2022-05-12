@@ -15,8 +15,8 @@ cc.Class({
 
         this.check = true;
         this.checkJump = true;
-        this.actionRight = cc.moveBy(10, 3000, 0);
-        this.actionLeft = cc.moveBy(10, -3000, 0);
+        this.actionRight = cc.moveBy(10, cc.v2(3000, 0));
+        this.actionLeft = cc.moveBy(10, cc.v2(-3000, 0));
         this.actionUp = cc.sequence(cc.moveBy(0.5, 0, 100), cc.moveBy(0.5, 0, -100));
     },
 
@@ -26,9 +26,9 @@ cc.Class({
     initCharacter() {
         this.node.active = true;
         this.spineBoy.addAnimation(0, 'portal', false);
-        this.spineBoy.setCompleteListener(() => {
-            this.spineBoy.addAnimation(1, 'idle', true);
-        })
+        // this.spineBoy.setCompleteListener(() => {
+        //     this.spineBoy.addAnimation(0, 'idle', true);
+        // })
     },
     eventHandler() {
         // Emitter.instance = new Emitter();
@@ -47,21 +47,20 @@ cc.Class({
         if (this.check) {
             this.check = false;
             this.node.scaleX = -0.1;
-            this.spineBoy.setAnimation(0, 'run', true);
             this.node.runAction(this.actionLeft);
+            this.spineBoy.setAnimation(0, 'run', true);
         }
     },
     rightDown() {
         if (this.check) {
             this.check = false;
             this.node.scaleX = 0.1;
-            // this.spineBoy.clearTracks();
-            this.spineBoy.setAnimation(0, 'run', true);
             this.node.runAction(this.actionRight);
+            this.spineBoy.setAnimation(0, 'run', true);
         }
     },
     upKeyDown() {
-        this.spineBoy.setAnimation(1, 'jump', false);
+        this.spineBoy.setAnimation(0, 'jump', false);
     },
     downKeyDown() {
         console.log('DownKey down');
@@ -70,22 +69,15 @@ cc.Class({
     leftUp() {
         this.check = true;
         this.node.stopAction(this.actionLeft);
-        this.spineBoy.setToSetupPose(() => {
-            this.spineBoy.setAnimation(0, 'idle', true);
-        });
+        this.spineBoy.setAnimation(0, 'idle', true);
     },
     rightUp() {
         this.check = true;
         this.node.stopAction(this.actionRight);
-        this.spineBoy.setToSetupPose(() => {
-            this.spineBoy.setAnimation(0, 'idle', true);
-        });
+        this.spineBoy.setAnimation(0, 'idle', true);
     },
     upKeyUp() {
-        this.spineBoy.setToSetupPose(() => {
-            this.spineBoy.clearTracks();
-            this.spineBoy.setAnimation(0, 'idle', true);
-        });
+        this.spineBoy.setAnimation(0, 'idle', true);
     },
     downKeyUp() {
         console.log('DownKey up');

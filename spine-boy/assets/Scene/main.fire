@@ -421,7 +421,7 @@
     "_frameCache": null,
     "_curFrame": null,
     "_skeletonCache": null,
-    "_animationName": "jump",
+    "_animationName": "run-to-idle",
     "_animationQueue": [],
     "_headAniInfo": null,
     "_playTimes": 1,

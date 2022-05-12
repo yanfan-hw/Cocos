@@ -70,8 +70,8 @@
     "relativePath": "Script"
   },
   "2d2f792f-a40c-49bb-a189-ed176a246e49": {
-    "asset": 1652350657555,
-    "meta": 1652350657557,
+    "asset": 1652351198305,
+    "meta": 1652351198311,
     "relativePath": "Scene/main.fire"
   },
   "bbb00b42-da65-4b61-b661-76a11a1a9593": {
@@ -470,8 +470,8 @@
     "relativePath": "model/primitives.fbx"
   },
   "f03bbf32-a67e-4243-a05c-8bcbc9a25f7c": {
-    "asset": 1652350920503,
-    "meta": 1652350923902,
+    "asset": 1652351910063,
+    "meta": 1652351914758,
     "relativePath": "Script/SpineBoy.js"
   }
 }
