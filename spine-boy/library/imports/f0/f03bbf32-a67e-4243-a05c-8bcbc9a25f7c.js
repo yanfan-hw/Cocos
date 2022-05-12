@@ -66,6 +66,21 @@ cc.Class({
         }
     },
     upKeyDown: function upKeyDown() {
+        var _this = this;
+
+        if (this.checkJump) {
+            this.checkJump = false;
+            this.node.runAction(this.actionUp);
+            this.spineBoy.setAnimation(0, "jump", false);
+            this.spineBoy.setCompleteListener(function () {
+                _this.checkJump = true;
+            });
+            if (this.check) {
+                this.spineBoy.addAnimation(0, "idle", true);
+            } else {
+                this.spineBoy.addAnimation(0, "run", true);
+            }
+        }
         this.spineBoy.setAnimation(0, 'jump', false);
     },
     downKeyDown: function downKeyDown() {
@@ -74,17 +89,15 @@ cc.Class({
     leftUp: function leftUp() {
         this.check = true;
         this.node.stopAction(this.actionLeft);
-        // this.spineBoy.clearTrack();
         this.spineBoy.setAnimation(0, 'idle', true);
     },
     rightUp: function rightUp() {
         this.check = true;
         this.node.stopAction(this.actionRight);
-        // this.spineBoy.clearTrack();
         this.spineBoy.setAnimation(0, 'idle', true);
     },
     upKeyUp: function upKeyUp() {
-        // this.spineBoy.clearTrack();
+        this.node.stopAction(this.actionUp);
         this.spineBoy.setAnimation(0, 'idle', true);
     },
     downKeyUp: function downKeyUp() {

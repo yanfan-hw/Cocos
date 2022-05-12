@@ -60,6 +60,19 @@ cc.Class({
         }
     },
     upKeyDown() {
+        if (this.checkJump) {
+            this.checkJump = false;
+            this.node.runAction(this.actionUp);
+            this.spineBoy.setAnimation(0, "jump", false);
+            this.spineBoy.setCompleteListener(() => {
+                this.checkJump = true;
+            });
+            if (this.check) {
+                this.spineBoy.addAnimation(0, "idle", true);
+            } else {
+                this.spineBoy.addAnimation(0, "run", true);
+            }
+        }
         this.spineBoy.setAnimation(0, 'jump', false);
     },
     downKeyDown() {
@@ -77,6 +90,7 @@ cc.Class({
         this.spineBoy.setAnimation(0, 'idle', true);
     },
     upKeyUp() {
+        this.node.stopAction(this.actionUp);
         this.spineBoy.setAnimation(0, 'idle', true);
     },
     downKeyUp() {
