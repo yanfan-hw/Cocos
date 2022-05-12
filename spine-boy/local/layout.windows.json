@@ -8,8 +8,8 @@
       "windowType": "dockable",
       "x": 0,
       "y": 25,
-      "width": 1680,
-      "height": 954,
+      "width": 1386,
+      "height": 788,
       "layout": {
         "children": [
           {
@@ -19,23 +19,23 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 411,
+                "height": 317.28125,
                 "type": "panel",
-                "width": 268
+                "width": 218.421875
               },
               {
                 "active": 0,
                 "children": [
                   "assets"
                 ],
-                "height": 453,
+                "height": 349.71875,
                 "type": "panel",
-                "width": 268
+                "width": 218.421875
               }
             ],
-            "height": 866,
+            "height": 669,
             "type": "dock-v",
-            "width": 268
+            "width": 218.421875
           },
           {
             "children": [
@@ -46,23 +46,23 @@
                     "children": [
                       "scene"
                     ],
-                    "height": 453,
+                    "height": 349.71875,
                     "type": "panel",
-                    "width": 660
+                    "width": 537.6875
                   },
                   {
                     "active": 0,
                     "children": [
                       "node-library"
                     ],
-                    "height": 453,
+                    "height": 349.71875,
                     "type": "panel",
-                    "width": 347
+                    "width": 282.6875
                   }
                 ],
-                "height": 453,
+                "height": 349.71875,
                 "type": "dock-h",
-                "width": 1009
+                "width": 822.375
               },
               {
                 "active": 0,
@@ -71,14 +71,14 @@
                   "timeline",
                   "game-window"
                 ],
-                "height": 411,
+                "height": 317.28125,
                 "type": "panel",
-                "width": 1009
+                "width": 822.375
               }
             ],
-            "height": 866,
+            "height": 669,
             "type": "dock-v",
-            "width": 1009
+            "width": 822.375
           },
           {
             "active": 0,
@@ -86,9 +86,9 @@
               "inspector",
               "cocos-services"
             ],
-            "height": 866,
+            "height": 669,
             "type": "panel",
-            "width": 399
+            "width": 325.203125
           }
         ],
         "type": "dock-h"

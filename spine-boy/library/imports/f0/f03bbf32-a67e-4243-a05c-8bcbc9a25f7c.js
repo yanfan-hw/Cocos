@@ -23,11 +23,11 @@ cc.Class({
         this.initCharacter();
         this.eventHandler();
 
-        this.check = true;
-        this.checkJump = true;
+        this.canMove = true;
+        this.canJump = true;
         this.actionRight = cc.moveBy(10, cc.v2(3000, 0));
         this.actionLeft = cc.moveBy(10, cc.v2(-3000, 0));
-        this.actionUp = cc.sequence(cc.moveBy(0.5, 0, 100), cc.moveBy(0.5, 0, -100));
+        this.actionJump = cc.jumpBy(1, cc.v2(0, 0), 100, 1);
     },
     start: function start() {},
     initCharacter: function initCharacter() {
@@ -39,9 +39,9 @@ cc.Class({
     },
     eventHandler: function eventHandler() {
         // Emitter.instance = new Emitter();
-        _mEmitter2.default.instance.registerEvent('leftDown', this.leftDown.bind(this));
-        _mEmitter2.default.instance.registerEvent('rightDown', this.rightDown.bind(this));
-        _mEmitter2.default.instance.registerEvent('upKeyDown', this.upKeyDown.bind(this));
+        _mEmitter2.default.instance.registerEvent('leftDown', this.moveLeft.bind(this));
+        _mEmitter2.default.instance.registerEvent('rightDown', this.moveRight.bind(this));
+        _mEmitter2.default.instance.registerEvent('upKeyDown', this.moveJump.bind(this));
         _mEmitter2.default.instance.registerEvent('downKeyDown', this.downKeyDown.bind(this));
 
         _mEmitter2.default.instance.registerEvent('leftUp', this.leftUp.bind(this));
@@ -49,56 +49,51 @@ cc.Class({
         _mEmitter2.default.instance.registerEvent('upKeyUp', this.upKeyUp.bind(this));
         _mEmitter2.default.instance.registerEvent('downKeyUp', this.downKeyUp.bind(this));
     },
-    leftDown: function leftDown() {
-        if (this.check) {
-            this.check = false;
+    moveLeft: function moveLeft() {
+        if (this.canMove) {
+            this.canMove = false;
             this.node.scaleX = -0.1;
             this.node.runAction(this.actionLeft);
             this.spineBoy.setAnimation(0, 'run', true);
         }
     },
-    rightDown: function rightDown() {
-        if (this.check) {
-            this.check = false;
+    moveRight: function moveRight() {
+        if (this.canMove) {
+            this.canMove = false;
             this.node.scaleX = 0.1;
             this.node.runAction(this.actionRight);
             this.spineBoy.setAnimation(0, 'run', true);
         }
     },
-    upKeyDown: function upKeyDown() {
+    moveJump: function moveJump() {
         var _this = this;
 
-        if (this.checkJump) {
-            this.checkJump = false;
-            this.node.runAction(this.actionUp);
-            this.spineBoy.setAnimation(0, "jump", false);
-            this.spineBoy.setCompleteListener(function () {
-                _this.checkJump = true;
-            });
-            if (this.check) {
-                this.spineBoy.addAnimation(0, "idle", true);
-            } else {
-                this.spineBoy.addAnimation(0, "run", true);
-            }
+        if (this.canJump) {
+            var resetCanJump = cc.callFunc(function () {
+                _this.canJump = true;
+            }, this);
+            var action = cc.sequence(this.actionJump, resetCanJump);
+            this.node.runAction(action);
+
+            this.canJump = false;
         }
-        this.spineBoy.setAnimation(0, 'jump', false);
     },
     downKeyDown: function downKeyDown() {
         console.log('DownKey down');
     },
     leftUp: function leftUp() {
-        this.check = true;
+        this.canMove = true;
         this.node.stopAction(this.actionLeft);
         this.spineBoy.setAnimation(0, 'idle', true);
     },
     rightUp: function rightUp() {
-        this.check = true;
+        this.canMove = true;
         this.node.stopAction(this.actionRight);
         this.spineBoy.setAnimation(0, 'idle', true);
     },
     upKeyUp: function upKeyUp() {
-        this.node.stopAction(this.actionUp);
-        this.spineBoy.setAnimation(0, 'idle', true);
+        // this.node.stopAction(this.actionJump);
+        // this.spineBoy.setAnimation(0, 'idle', true);
     },
     downKeyUp: function downKeyUp() {
         console.log('DownKey up');
