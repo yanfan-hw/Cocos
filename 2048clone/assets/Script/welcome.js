@@ -10,15 +10,22 @@ cc.Class({
             default: null,
             type: cc.Node
         },
+        heading: {
+            default: null,
+            type: cc.Node
+        },
         _text: '2048'
     },
 
     // use this for initialization
     onLoad: function () {
+        this.background.active = false;
+
         cc.tween(this.label.node)
             .to(2, { opacity: 0 })
             .call(() => {
                 this.background.color = new cc.Color(255, 255, 255);
+                // this.background.active = false;
             })
             .start()
         this.label.string = this._text;
