@@ -459,14 +459,9 @@
     "meta": 1652714074037,
     "relativePath": "model\\primitives.fbx"
   },
-  "2d2f792f-a40c-49bb-a189-ed176a246e49": {
-    "asset": 1652713982051,
-    "meta": 1652714074786,
-    "relativePath": "Scene\\main.fire"
-  },
   "9a55a651-0109-4ab3-8bda-00ddb2f6b9b9": {
-    "asset": 1652717826332,
-    "meta": 1652717826358,
+    "asset": 1652718842523,
+    "meta": 1652718842568,
     "relativePath": "Scene\\game.fire"
   },
   "a8f10463-44e9-49a4-8962-47c3b703cc92": {
@@ -495,8 +490,8 @@
     "relativePath": "Script\\Main.js"
   },
   "f03bbf32-a67e-4243-a05c-8bcbc9a25f7c": {
-    "asset": 1652717577655,
-    "meta": 1652717584622,
+    "asset": 1652718874244,
+    "meta": 1652718888560,
     "relativePath": "Script\\SpineBoy.js"
   }
 }

@@ -65,7 +65,7 @@
                 "width": 819.984375
               },
               {
-                "active": 2,
+                "active": 0,
                 "children": [
                   "console",
                   "timeline",
@@ -104,7 +104,8 @@
         "cocos-services",
         "scene"
       ]
-    }
+    },
+    "window-1652718849739": {}
   },
   "panels": {
     "project-settings": {

@@ -41,8 +41,8 @@ cc.Class({
         if (selfCollider.tag === 1) {
             this.onTheGround = true;
         }
-        if (otherCollider.tag == 1) {
-            cc.log(100);
+        if (otherCollider.tag == 2) {
+            this.updateScore();
         }
     },
     _initCharacter: function _initCharacter() {
