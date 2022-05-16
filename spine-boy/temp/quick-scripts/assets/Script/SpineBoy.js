@@ -19,25 +19,39 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
     onLoad: function onLoad() {
-        this.node.active = false;
-        this.initCharacter();
-        this.eventHandler();
+        var _this = this;
 
-        this.canMove = true;
-        this.canJump = true;
-        this.actionRight = cc.moveBy(10, cc.v2(3000, 0));
-        this.actionLeft = cc.moveBy(10, cc.v2(-3000, 0));
-        this.actionJump = cc.jumpBy(1, cc.v2(0, 0), 100, 1);
+        this.node.active = false;
+        this._initCharacter();
+        // this._eventHandler();
+
+        this.direction = 0;
+        this.velocityMax = 150;
+        this.Rigid_Body = this.node.getComponent(cc.RigidBody);
+        this.walkForce = 10000;
+        this.jumpForce = 110000;
+        this.onTheGround = false;
+        this.actionSpeed = cc.callFunc(function () {
+            _this.walkForce = 15000;
+        });
     },
     start: function start() {},
-    initCharacter: function initCharacter() {
+    onBeginContact: function onBeginContact(contact, selfCollider, otherCollider) {
+        if (selfCollider.tag === 1) {
+            this.onTheGround = true;
+        }
+    },
+    _initCharacter: function _initCharacter() {
+        var _this2 = this;
+
         this.node.active = true;
         this.spineBoy.addAnimation(0, 'portal', false);
-        // this.spineBoy.setCompleteListener(() => {
-        //     this.spineBoy.addAnimation(0, 'idle', true);
-        // })
+        this.spineBoy.setCompleteListener(function () {
+            _this2.spineBoy.addAnimation(0, 'idle', true);
+            _this2._eventHandler();
+        });
     },
-    eventHandler: function eventHandler() {
+    _eventHandler: function _eventHandler() {
         // Emitter.instance = new Emitter();
         _mEmitter2.default.instance.registerEvent('leftDown', this.moveLeft.bind(this));
         _mEmitter2.default.instance.registerEvent('rightDown', this.moveRight.bind(this));
@@ -49,59 +63,51 @@ cc.Class({
         _mEmitter2.default.instance.registerEvent('upKeyUp', this.upKeyUp.bind(this));
         _mEmitter2.default.instance.registerEvent('downKeyUp', this.downKeyUp.bind(this));
     },
+    _setAnimationRun: function _setAnimationRun() {
+        this.spineBoy.setMix('walk', 'run', 0.8);
+        this.spineBoy.setAnimation(0, 'walk', false);
+        this.spineBoy.addAnimation(0, 'run', true);
+    },
     moveLeft: function moveLeft() {
-        if (this.canMove) {
-            this.canMove = false;
-            this.node.scaleX = -0.1;
-            this.node.runAction(this.actionLeft);
-            this.spineBoy.setAnimation(0, 'run', true);
-        }
+        this.direction = -1;
+        this.node.scaleX = -0.1;
+        this.node.runAction(cc.sequence(cc.delayTime(1), this.actionSpeed));
     },
     moveRight: function moveRight() {
-        if (this.canMove) {
-            this.canMove = false;
-            this.node.scaleX = 0.1;
-            this.node.runAction(this.actionRight);
-            this.spineBoy.setAnimation(0, 'run', true);
-        }
+        this.direction = 1;
+        this.node.scaleX = 0.1;
+        this.node.runAction(cc.sequence(cc.delayTime(1), this.actionSpeed));
     },
     moveJump: function moveJump() {
-        var _this = this;
-
-        if (this.canJump) {
-            var resetCanJump = cc.callFunc(function () {
-                _this.canJump = true;
-            }, this);
-            var action = cc.sequence(this.actionJump, resetCanJump);
-            this.node.runAction(action);
-
-            this.canJump = false;
+        if (this.onTheGround) {
+            this.Rigid_Body.applyForceToCenter(cc.v2(0, this.jumpForce), true);
+            this.onTheGround = false;
         }
     },
     downKeyDown: function downKeyDown() {
-        console.log('DownKey down');
+        // console.log('DownKey down');
+    },
+    _setAnimationIdle: function _setAnimationIdle() {
+        this.spineBoy.setAnimation(0, 'idle', true);
     },
     leftUp: function leftUp() {
-        this.canMove = true;
-        this.node.stopAction(this.actionLeft);
-        this.spineBoy.setAnimation(0, 'idle', true);
+        this.direction = 0;
+        this.velocityMax = 150;
     },
     rightUp: function rightUp() {
-        this.canMove = true;
-        this.node.stopAction(this.actionRight);
-        this.spineBoy.setAnimation(0, 'idle', true);
+        this.direction = 0;
+        this.velocityMax = 150;
     },
     upKeyUp: function upKeyUp() {
-        // this.node.stopAction(this.actionJump);
-        // this.spineBoy.setAnimation(0, 'idle', true);
+        // this.canJump = true;
     },
-    downKeyUp: function downKeyUp() {
-        console.log('DownKey up');
+    downKeyUp: function downKeyUp() {},
+    update: function update(dt) {
+        if (this.direction > 0 && this.Rigid_Body.linearVelocity.x < this.velocityMax || this.direction < 0 && this.Rigid_Body.linearVelocity.x > -this.velocityMax) {
+            this.Rigid_Body.applyForceToCenter(cc.v2(this.direction * this.walkForce, 0), true);
+        }
     }
-}
-
-// update(dt) {},
-);
+});
 
 cc._RF.pop();
         }

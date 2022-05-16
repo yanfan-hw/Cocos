@@ -10,8 +10,8 @@
       false
     ]
   ],
-  "design-resolution-height": 768,
-  "design-resolution-width": 1024,
+  "design-resolution-height": 489,
+  "design-resolution-width": 828,
   "excluded-modules": [],
   "facebook": {
     "appID": "",
@@ -27,7 +27,7 @@
   "fit-width": true,
   "group-list": [
     "Object",
-    "Wall"
+    "Ground"
   ],
   "last-module-event-record-time": 1652372039465,
   "simulator-orientation": false,
@@ -35,7 +35,7 @@
     "height": 640,
     "width": 960
   },
-  "start-scene": "2d2f792f-a40c-49bb-a189-ed176a246e49",
+  "start-scene": "9a55a651-0109-4ab3-8bda-00ddb2f6b9b9",
   "use-customize-simulator": true,
   "use-project-simulator-setting": false
 }
