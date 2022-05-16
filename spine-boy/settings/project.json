@@ -8,6 +8,11 @@
     [
       true,
       false
+    ],
+    [
+      false,
+      false,
+      false
     ]
   ],
   "design-resolution-height": 489,
@@ -27,7 +32,8 @@
   "fit-width": true,
   "group-list": [
     "Object",
-    "Ground"
+    "Ground",
+    "Label"
   ],
   "last-module-event-record-time": 1652372039465,
   "simulator-orientation": false,

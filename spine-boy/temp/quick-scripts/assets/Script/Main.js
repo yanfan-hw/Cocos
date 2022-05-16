@@ -16,18 +16,20 @@ cc.Class({
     properties: {
         background: cc.Node,
         spineBoy: cc.Node,
+        score: cc.Node,
         playBtn: cc.Node
     },
     onLoad: function onLoad() {
         var physicsManager = cc.director.getPhysicsManager();
         physicsManager.enabled = true;
-        physicsManager.gravity = cc.v2(0, -2000);
+        physicsManager.gravity = cc.v2(0, -3000);
 
         _mEmitter2.default.instance = new _mEmitter2.default();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.background.opacity = 50;
         this.spineBoy.active = false;
+        this.score.active = false;
     },
     onKeyDown: function onKeyDown(event) {
         switch (event.keyCode) {
@@ -87,6 +89,7 @@ cc.Class({
         this.playBtn.active = false;
         this.background.opacity = 255;
         this.spineBoy.active = true;
+        this.score.active = true;
     }
     // start () {
     // },

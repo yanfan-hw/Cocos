@@ -37,8 +37,8 @@ cc.Class({
             case cc.macro.KEY.w:
                 Emitter.instance.emit('upKeyDown');
                 break;
-            case cc.macro.KEY.down:
-                Emitter.instance.emit('downKeyDown');
+            case cc.macro.KEY.s:
+                Emitter.instance.emit('sKeyDown');
                 break;
         }
     },
@@ -62,8 +62,8 @@ cc.Class({
             case cc.macro.KEY.w:
                 Emitter.instance.emit('upKeyUp');
                 break;
-            case cc.macro.KEY.down:
-                Emitter.instance.emit('downKeyUp');
+            case cc.macro.KEY.s:
+                Emitter.instance.emit('sKeyUp');
                 break;
         }
     },

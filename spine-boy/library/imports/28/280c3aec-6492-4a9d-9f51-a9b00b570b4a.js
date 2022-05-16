@@ -46,8 +46,8 @@ cc.Class({
             case cc.macro.KEY.w:
                 _mEmitter2.default.instance.emit('upKeyDown');
                 break;
-            case cc.macro.KEY.down:
-                _mEmitter2.default.instance.emit('downKeyDown');
+            case cc.macro.KEY.s:
+                _mEmitter2.default.instance.emit('sKeyDown');
                 break;
         }
     },
@@ -71,8 +71,8 @@ cc.Class({
             case cc.macro.KEY.w:
                 _mEmitter2.default.instance.emit('upKeyUp');
                 break;
-            case cc.macro.KEY.down:
-                _mEmitter2.default.instance.emit('downKeyUp');
+            case cc.macro.KEY.s:
+                _mEmitter2.default.instance.emit('sKeyUp');
                 break;
         }
     },

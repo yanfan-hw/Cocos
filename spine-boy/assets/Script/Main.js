@@ -6,18 +6,20 @@ cc.Class({
     properties: {
         background: cc.Node,
         spineBoy: cc.Node,
+        score: cc.Node,
         playBtn: cc.Node
     },
     onLoad () {
         let physicsManager = cc.director.getPhysicsManager();
         physicsManager.enabled = true;
-        physicsManager.gravity = cc.v2(0, -2000);
+        physicsManager.gravity = cc.v2(0, -3000);
 
         Emitter.instance = new Emitter();
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.background.opacity = 50;
         this.spineBoy.active = false;
+        this.score.active = false;
     },
     onKeyDown(event) {
         switch (event.keyCode) {
@@ -77,6 +79,7 @@ cc.Class({
         this.playBtn.active = false;
         this.background.opacity = 255;
         this.spineBoy.active = true;
+        this.score.active = true;
     }
     // start () {
     // },

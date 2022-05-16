@@ -14,14 +14,15 @@ cc.Class({
         // this._eventHandler();
 
         this.direction = 0;
-        this.velocityMax = 150;
+        this.velocityMax = 250;
         this.Rigid_Body = this.node.getComponent(cc.RigidBody);
-        this.walkForce = 10000;
-        this.jumpForce = 110000;
+        this.walkForce = 3000;
+        this.jumpForce = 140000;
         this.onTheGround = false;
         this.actionSpeed = cc.callFunc(() => {
             this.walkForce = 15000;
         });
+        this.isStanding = true;
 
     },
 
@@ -32,41 +33,53 @@ cc.Class({
         if (selfCollider.tag === 1) {
             this.onTheGround = true;
         }
+        if (otherCollider.tag == 2) {
+            this.updateScore();
+        }
     },
     _initCharacter() {
         this.node.active = true;
         this.spineBoy.addAnimation(0, 'portal', false);
         this.spineBoy.setCompleteListener(() => {
-            this.spineBoy.addAnimation(0, 'idle', true);
+            // this.spineBoy.addAnimation(0, 'idle', true);
             this._eventHandler();
         })
+        this.score = 0;
     },
     _eventHandler() {
         // Emitter.instance = new Emitter();
         Emitter.instance.registerEvent('leftDown', this.moveLeft.bind(this));
         Emitter.instance.registerEvent('rightDown', this.moveRight.bind(this));
         Emitter.instance.registerEvent('upKeyDown', this.moveJump.bind(this));
-        Emitter.instance.registerEvent('downKeyDown', this.downKeyDown.bind(this));
+        Emitter.instance.registerEvent('sKeyDown', this.sKeyDown.bind(this));
 
         Emitter.instance.registerEvent('leftUp', this.leftUp.bind(this));
         Emitter.instance.registerEvent('rightUp', this.rightUp.bind(this));
         Emitter.instance.registerEvent('upKeyUp', this.upKeyUp.bind(this));
-        Emitter.instance.registerEvent('downKeyUp', this.downKeyUp.bind(this));
+        Emitter.instance.registerEvent('sKeyUp', this.sKeyUp.bind(this));
     },
     _setAnimationRun() {
-        this.spineBoy.setMix('walk', 'run', 0.8);
-        this.spineBoy.setAnimation(0, 'walk', false);
-        this.spineBoy.addAnimation(0, 'run', true);
+        // this.spineBoy.setMix('walk', 'run', 0.8);
+        // this.spineBoy.setAnimation(0, 'walk', false);
+        this.spineBoy.setAnimation(0, 'run', true);
     },
     moveLeft() {
-        this.direction = -1;
-        this.node.scaleX = -0.1;
-        this.node.runAction(cc.sequence(cc.delayTime(1), this.actionSpeed));
+        if (this.isStanding) {
+            this.direction = -1;
+            this.node.scaleX = -0.1;
+            // this.node.runAction(cc.sequence(cc.delayTime(1), this.actionSpeed));
+            this._setAnimationRun();
+            this.isStanding = false;
+        }
     },
     moveRight() {
-        this.direction = 1;
-        this.node.scaleX = 0.1;
-        this.node.runAction(cc.sequence(cc.delayTime(1), this.actionSpeed));
+        if (this.isStanding) {
+            this.direction = 1;
+            this.node.scaleX = 0.1;
+            // this.node.runAction(cc.sequence(cc.delayTime(1), this.actionSpeed));
+            this._setAnimationRun();
+            this.isStanding = false;
+        }
     },
     moveJump() {
         if (this.onTheGround) {
@@ -74,7 +87,7 @@ cc.Class({
             this.onTheGround = false;
         }
     },
-    downKeyDown() {
+    sKeyDown() {
         // console.log('DownKey down');
     },
 
@@ -84,22 +97,34 @@ cc.Class({
     leftUp() {
         this.direction = 0;
         this.velocityMax = 150;
+        this.isStanding = true;
+        this._setAnimationIdle();
     },
     rightUp() {
         this.direction = 0;
         this.velocityMax = 150;
+        this.isStanding = true;
+        this._setAnimationIdle();
     },
     upKeyUp() {
-        // this.canJump = true;
     },
-    downKeyUp() {
+
+    sKeyUp() {
 
     },
 
     update(dt) {
+
         if ((this.direction > 0 && this.Rigid_Body.linearVelocity.x < this.velocityMax) ||
             (this.direction < 0 && this.Rigid_Body.linearVelocity.x > -this.velocityMax)) {
             this.Rigid_Body.applyForceToCenter(cc.v2(this.direction * this.walkForce, 0), true);
+        }
+
+        if (this.spineBoy.node.y < -180) {
+            cc.log("Lose");
+            this.spineBoy.node.y = 0;
+            this.spineBoy.node.setPosition(cc.v2(-330, 0));
+            return
         }
     },
 });
